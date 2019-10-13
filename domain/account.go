@@ -4,13 +4,13 @@ var accountCounter = 0
 
 type Account struct {
 	id       int
-	personId int
+	clientId int
 }
 
-func CreateAccount(person *Person) *Account {
+func CreateAccount(client *Client) *Account {
 	result := Account{
 		id:       accountCounter,
-		personId: person.Id(),
+		clientId: client.Id(),
 	}
 	accountCounter++
 	return &result
@@ -20,6 +20,6 @@ func (account *Account) Id() int {
 	return account.id
 }
 
-func (account *Account) PersonId() int {
-	return account.personId
+func (account *Account) ClientId() int {
+	return account.clientId
 }

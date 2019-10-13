@@ -5,24 +5,24 @@ import (
 )
 
 type Bank struct {
-	persons      []Person
+	clients      []Client
 	accounts     []Account
 	transactions []Transaction
 }
 
-func (bank *Bank) GetPersonById(id int) Person {
-	for _, person := range bank.persons {
-		if person.Id() == id {
-			return person
+func (bank *Bank) GetclientById(id int) Client {
+	for _, client := range bank.clients {
+		if client.Id() == id {
+			return client
 		}
 	}
-	return Person{}
+	return Client{}
 }
 
-func (bank *Bank) GetAccounts(person *Person) []Account {
+func (bank *Bank) GetAccounts(client *Client) []Account {
 	accounts := []Account{}
 	for _, account := range bank.accounts {
-		if account.PersonId() == person.Id() {
+		if account.ClientId() == client.Id() {
 			accounts = append(accounts, account)
 		}
 	}
@@ -49,7 +49,7 @@ func (bank *Bank) SaveTransaction(transaction *Transaction) {
 	bank.transactions = append(bank.transactions, *transaction)
 }
 
-func (bank *Bank) SavePerson(person *Person) {
-	log.Println("Saving client with id:", person.Id())
-	bank.persons = append(bank.persons, *person)
+func (bank *Bank) SaveClient(client *Client) {
+	log.Println("Saving client with id:", client.Id())
+	bank.clients = append(bank.clients, *client)
 }

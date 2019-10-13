@@ -99,8 +99,8 @@ func handleAdminScreen(response http.ResponseWriter, request *http.Request) {
 		message = phoneNumberError.Error()
 		log.Println(phoneNumberError)
 	} else {
-		client := domain.NewPerson(firstName, lastName, phoneNumberAsInt)
-		bank.SavePerson(client)
+		client := domain.NewClient(firstName, lastName, phoneNumberAsInt)
+		bank.SaveClient(client)
 		if message == "" {
 			message = "Client saved"
 		}
