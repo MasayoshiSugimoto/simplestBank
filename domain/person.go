@@ -1,6 +1,9 @@
 package domain
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 var personCounter = 0
 
@@ -15,7 +18,7 @@ func test() {
 	fmt.Println("vim-go")
 }
 
-func CreatePerson(firstName string, lastName string, telephone int) *Person {
+func NewPerson(firstName string, lastName string, telephone int) *Person {
 	personCounter++
 	person := Person{
 		id:        personCounter,
@@ -23,6 +26,7 @@ func CreatePerson(firstName string, lastName string, telephone int) *Person {
 		lastName:  lastName,
 		telephone: telephone,
 	}
+	log.Println("Creating client:", person)
 	return &person
 }
 
