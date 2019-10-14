@@ -1,14 +1,6 @@
 function createClient(handler) {
 	const request = new XMLHttpRequest()
-	request.onreadystatechange = event => {
-		if (request.readyState == XMLHttpRequest.DONE) {
-			if (request.status === 200) {
-				handler(JSON.parse(request.responseText))
-			} else {
-				console.log("createClient: request failure")
-			}
-		}
-	}
+	request.onreadystatechange = responseHandler(request, handler, console.log)
 	request.open("POST", "/client/new", true)
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
 
@@ -24,4 +16,19 @@ function onClientCreatePerson() {
 	createClient(response =>
 		document.getElementById("alert_component").innerText = response.Message
 	)
+}
+
+function responseHandler(request, resolve, reject) {
+	return event => {
+		if (request.readyState == XMLHttpRequest.DONE) {
+			if (request.status === 200) {
+				resolve(JSON.parse(request.responseText))
+			} else {
+				reject("createClient: request failure")
+			}
+		}
+	}
+}
+
+function login() {
 }
