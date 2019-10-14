@@ -46,3 +46,32 @@ function login() {
 
 	request.send(options)
 }
+
+function onUserScreenLoaded() {
+	const component = document.getElementById("user_info_component")
+
+	const firstName = "john"
+
+	const accounts = [
+		{accountId: 1, balance: 2},
+		{accountId: 3, balance: 4}
+	]
+
+	component.innerHTML = `
+		<h1>Welcome ${firstName}</h1>
+		${accounts.map(createAccountComponent).join("</br>")}
+	`
+}
+
+function createAccountComponent({accountId, balance}) {
+	return `
+		<h2>Account ${accountId}</h2>
+		Balance: ${balance}</br>
+		<h3>Transfert</h3>
+		To: <input type="text" placeholder="phone number"></input>
+		</br>
+		Amount: <input type="text"></input>Yens
+		</br>
+		<input type=button value="Transfert"></input>
+	`
+}
