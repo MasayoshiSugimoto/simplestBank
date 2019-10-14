@@ -33,3 +33,11 @@ func NewClient(firstName string, lastName string, telephone int) *Client {
 func (client *Client) Id() int {
 	return client.id
 }
+
+func (client *Client) PhoneNumber() int {
+	return client.telephone
+}
+
+func (client *Client) IsVoid() bool {
+	return client.id == 0
+}

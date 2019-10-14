@@ -21,6 +21,7 @@ function onClientCreatePerson() {
 function responseHandler(request, resolve, reject) {
 	return event => {
 		if (request.readyState == XMLHttpRequest.DONE) {
+			console.log(request.responseText)
 			if (request.status === 200) {
 				resolve(JSON.parse(request.responseText))
 			} else {
@@ -31,4 +32,17 @@ function responseHandler(request, resolve, reject) {
 }
 
 function login() {
+	const request = new XMLHttpRequest()
+	request.onreadystatechange = responseHandler(
+		request,
+		console.log,
+		console.log
+	)
+	request.open("POST", "/login", true)
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+
+	const options = new URLSearchParams()
+	options.append("phone_number", document.getElementById("phone_number").value)
+
+	request.send(options)
 }

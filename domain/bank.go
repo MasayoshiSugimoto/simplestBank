@@ -10,9 +10,18 @@ type Bank struct {
 	transactions []Transaction
 }
 
-func (bank *Bank) GetclientById(id int) Client {
+func (bank *Bank) GetClientById(id int) Client {
 	for _, client := range bank.clients {
 		if client.Id() == id {
+			return client
+		}
+	}
+	return Client{}
+}
+
+func (bank *Bank) GetClientByPhoneNumber(phoneNumber int) Client {
+	for _, client := range bank.clients {
+		if client.PhoneNumber() == phoneNumber {
 			return client
 		}
 	}
