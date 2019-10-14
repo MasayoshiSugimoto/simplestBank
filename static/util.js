@@ -32,10 +32,20 @@ function responseHandler(request, resolve, reject) {
 }
 
 function login() {
+
+	const onReply = reply => {
+		if (reply.Success) {
+			sessionStorage.setItem("me.clientId", reply.Data.ClientId)
+			window.location.href = "/userScreen.html"
+		} else {
+			console.log(reply)
+		}
+	}
+
 	const request = new XMLHttpRequest()
 	request.onreadystatechange = responseHandler(
 		request,
-		console.log,
+		onReply,
 		console.log
 	)
 	request.open("POST", "/login", true)
